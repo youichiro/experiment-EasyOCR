@@ -83,7 +83,7 @@ def main():
   os.makedirs(args.out, exist_ok=True)
 
   reader = easyocr.Reader(args.lang, gpu=False)
-  print('start readtext')
+  print('start')
   results = reader.readtext(args.file)
   origin_im, detect_im, text_im = open_im(args.file, args.out)
   draw_detect(detect_im, results, args.file, args.out)
