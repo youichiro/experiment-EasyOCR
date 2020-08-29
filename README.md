@@ -2,6 +2,10 @@
 
 [EasyOCR](https://github.com/JaidedAI/EasyOCR)を使ってみた結果
 
+| Detected | Recognized |
+| --- | --- |
+| ![img1](https://github.com/youichiro/experiment-EasyOCR/blob/master/out/test2.detect.jpg) | ![img2](https://github.com/youichiro/experiment-EasyOCR/blob/master/out/test2.text.jpg) |
+
 ## jupyter notebook
 
 [https://github.com/youichiro/experiment-EasyOCR/blob/master/experiment_easyocr.ipynb](https://github.com/youichiro/experiment-EasyOCR/blob/master/experiment_easyocr.ipynb)
@@ -25,3 +29,4 @@ pip install -r requirements.txt
 ```bash
 python cli.py -l [langage, ...] -f <image file> -o <output dir>
 ```
+
