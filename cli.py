@@ -13,7 +13,6 @@ FONT_SIZE = 30
 def tuple_lists(xy_list):
     return tuple([tuple(xy) for xy in xy_list])
 
-
 def get_top_left_xy(xy_list):
     top_left_xt_index = np.array([x + y for x, y in xy_list]).argmin()
     return xy_list[top_left_xt_index]
@@ -57,8 +56,11 @@ def draw_text(text_im, results, image_path, out_dir):
     draw = ImageDraw.Draw(text_im)
     font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
     for result in results:
-        draw.polygon(tuple_lists(result[0]), fill=(255, 255, 255), outline=(0, 0, 0))
-        draw.text(tuple(get_top_left_xy(result[0])), result[1], font=font, fill=(0, 0, 0))
+        try:
+            draw.polygon(tuple_lists(result[0]), fill=(255, 255, 255), outline=(0, 0, 0))
+            draw.text(tuple(get_top_left_xy(result[0])), result[1], font=font, fill=(0, 0, 0))
+        except TypeError:
+            continue
 
     output_file = os.path.join(out_dir, make_filename(image_path, '.text.jpg'))
     text_im.save(output_file, quality=95)
@@ -73,9 +75,8 @@ def draw_text(text_im, results, image_path, out_dir):
 
 
 def main():
-  reader = easyocr.Reader(['ja','en'])
   parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-  parser.add_argument('-l', '--lang', nargs='+', required=True, help='languages')
+  parser.add_argument('-l', '--lang', nargs='+', default=['ja'], help='languages')
   parser.add_argument('-f', '--file', required=True, help='input image file')
   parser.add_argument('-o', '--out', default='out', help='output directory')
   args = parser.parse_args()
