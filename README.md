@@ -30,3 +30,10 @@ pip install -r requirements.txt
 python cli.py -l [langage, ...] -f <image file> -o <output dir>
 ```
 
+例
+
+```bash
+python cli.py -l ja en -f images/japanese.jpg -o out
+```
+
+
